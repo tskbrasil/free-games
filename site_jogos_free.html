@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Jogos</title>
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #2b2b2b;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .card p {
+            margin: 5px 0 0 0;
+        }
+        .card a {
+            color: white;
+            text-decoration: none;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        .search-box, .filter-box {
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .search-box input, .filter-box select {
+            background-color: #404040;
+            border: none;
+            padding: 10px;
+            color: white;
+            font-size: 1em;
+            width: 100%;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .search-box label, .filter-box label {
+            margin-right: 20px;
+        }
+        .search-box input::placeholder {
+            color: #9e9e9e;
+        }
+    </style>
+    <script>
+        function searchGames() {
+            var input, filter, cards, cardContainer, h3, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            cardContainer = document.getElementById("card-container");
+            cards = cardContainer.getElementsByClassName("card");
+
+            for (var i = 0; i < cards.length; i++) {
+                h3 = cards[i].getElementsByTagName("h3")[0];
+                txtValue = h3.textContent || h3.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        function filterGames() {
+            var select, filter, cards, cardContainer, category;
+            select = document.getElementById("category");
+            filter = select.value;
+            cardContainer = document.getElementById("card-container");
+            cards = cardContainer.getElementsByClassName("card");
+
+            for (var i = 0; i < cards.length; i++) {
+                category = cards[i].getAttribute("data-category");
+                if (filter === "todos" || category === filter) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Pesquisar Jogos -->
+        <div class="search-box">
+            <img src="logo_pesquisar.png" alt="Pesquisar">
+            <label for="search">Encontre seu jogo aqui!</label>
+            <input type="text" id="search" placeholder="Digite o nome do jogo aqui..." onkeyup="searchGames()">
+        </div>
+
+        <!-- Filtrar por Categoria -->
+        <div class="filter-box">
+            <label for="category">Selecione uma categoria:</label>
+            <select id="category" onchange="filterGames()">
+                <option value="todos">Todos</option>
+                <option value="corrida">Corrida</option>
+                <option value="soulslike">Soulslike</option>
+                <option value="acao">Ação</option>
+                <option value="aventura">Aventura</option>
+                <option value="rpg">RPG</option>
+                <option value="estrategia">Estratégia</option>
+                <option value="simulacao">Simulação</option>
+                <option value="plataforma">Plataforma</option>
+                <option value="terror">Terror</option>
+                <option value="mundo_aberto">Mundo Aberto</option>
+                <option value="multiplayer">Multiplayer</option>
+            </select>
+        </div>
+
+        <!-- Jogos -->
+        <div id="card-container">
+            <!-- MotoGP 17 -->
+            <div class="card" data-category="corrida">
+                <img src="logo_motogp17.png" alt="MotoGP 17">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/uhhw63l31awpfjy/MotoGP.17-CODEX.1.torrent/file" target="_blank">MotoGP 17</a></h3>
+                    <p>MotoGP 17 é um jogo de simulação de motociclismo que traz uma experiência realista das corridas de MotoGP. Com gráficos impressionantes e um modo carreira expansivo, os jogadores podem competir em pistas famosas do mundo todo.</p>
+                </div>
+            </div>
+
+            <!-- Dark Souls 3 -->
+            <div class="card" data-category="soulslike">
+                <img src="logo_darksouls3.png" alt="Dark Souls 3">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/7eonw0natmgrpcz/Dark_Souls_3_Deluxe_Edition_t1.torrent/file" target="_blank">Dark Souls 3</a></h3>
+                    <p>Dark Souls 3 é um RPG de ação aclamado, conhecido por sua dificuldade desafiadora e narrativa envolvente. Explore mundos sombrios e enfrente inimigos poderosos em sua jornada.</p>
+                </div>
+            </div>
+
+            <!-- Elden Ring Deluxe Edition -->
+            <div class="card" data-category="soulslike">
+                <img src="logo_elden_ring.png" alt="Elden Ring Deluxe Edition">
+                <div>
+                    <h3><a href="https://drive.google.com/file/d/1cHkf1OI8RduCZD-OvVaABq9SnZ_NQfY2/view?usp=drive_link" target="_blank">Elden Ring Deluxe Edition</a></h3>
+                    <p>Elden Ring é um RPG de ação desenvolvido pela FromSoftware, onde os jogadores exploram um mundo aberto vasto e interconectado, repleto de segredos e desafios. A Deluxe Edition oferece conteúdos adicionais e uma experiência ainda mais rica.</p>
+                </div>
+            </div>
+
+            <!-- Diablo III -->
+            <div class="card" data-category="rpg">
+                <img src="logo_diablo3.png" alt="Diablo III">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/wiz7nky01wup1uy/Diablo_3.torrent/file" target="_blank">Diablo III</a></h3>
+                    <p>Diablo III é um RPG de ação onde os jogadores enfrentam forças demoníacas em uma batalha épica. Com uma rica narrativa e jogabilidade envolvente, é um dos títulos mais aclamados da série.</p>
+                </div>
+            </div>
+
+            <!-- Diablo IV -->
+            <div class="card" data-category="rpg">
+                <img src="logo_diablo4.png" alt="Diablo IV">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/xfcf6s5z6ysbjpu/Diablo_IV_Reflection_.torrent/file" target="_blank">Diablo IV</a></h3>
+                    <p>Diablo IV continua a saga de batalha contra o mal, com gráficos impressionantes e um mundo mais aberto. Explore novas classes e enfrente novos desafios neste RPG de ação emocionante.</p>
+                </div>
+            </div>
+
+            <!-- Descenders -->
+            <div class="card" data-category="corrida">
+                <img src="logo_descenders.png" alt="Descenders">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/2ekg3xpl3sw84o1/Descenders.torrent/file" target="_blank">Descenders</a></h3>
+                    <p>Descenders é um jogo de downhill que oferece um estilo único de jogo em uma experiência de mountain bike. Com uma jogabilidade fluida e paisagens incríveis, é um must-play para os amantes de esportes radicais.</p>
+                </div>
+            </div>
+
+            <!-- Outros jogos... (adicione aqui) -->
+
+            <!-- Outlast -->
+            <div class="card" data-category="terror">
+                <img src="logo_outlast.png" alt="Outlast">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/4bst0b4a0qnjqfy/OUTLAST.rar/file" target="_blank">Outlast</a></h3>
+                    <p>Outlast é um jogo de terror em primeira pessoa onde os jogadores exploram um asilo abandonado e enfrentam horrores inimagináveis. Prepare-se para uma experiência aterrorizante.</p>
+                </div>
+            </div>
+
+            <!-- Letal Company -->
+            <div class="card" data-category="terror">
+                <img src="logo_letal_company.png" alt="Letal Company">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/c162jfc5kj7l4hz" target="_blank">Letal Company</a></h3>
+                    <p>Letal Company é um jogo de terror cooperativo onde os jogadores trabalham juntos para enfrentar criaturas aterrorizantes. A atmosfera tensa e os desafios em equipe fazem deste um jogo único.</p>
+                </div>
+            </div>
+
+            <!-- Overcooked 2 -->
+            <div class="card" data-category="multiplayer">
+                <img src="logo_overcooked2.png" alt="Overcooked 2">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/y4fkp8cgyu2wj6s/Overcooked.2.Build.01102020-OFME.torrent/file" target="_blank">Overcooked 2</a></h3>
+                    <p>Overcooked 2 é um jogo de cozinha cooperativo onde os jogadores devem trabalhar juntos para preparar pratos em condições caóticas. Divirta-se com amigos em desafios culinários!</p>
+                </div>
+            </div>
+
+            <!-- Need For Speed Heat Deluxe Edition -->
+            <div class="card" data-category="corrida">
+                <img src="logo_nfs_heat.png" alt="Need For Speed Heat Deluxe Edition">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/0y7dx1zqn7se9q2/Need.For.Speed.Heat.Deluxe.Edition-ZED.torrent/file" target="_blank">Need For Speed Heat Deluxe Edition</a></h3>
+                    <p>Need For Speed Heat é um emocionante jogo de corrida que combina perseguições policiais e corridas de rua em uma experiência vibrante e cheia de ação.</p>
+                </div>
+            </div>
+
+            <!-- Euro Truck Simulator -->
+            <div class="card" data-category="simulacao">
+                <img src="logo_euro_truck_simulator.png" alt="Euro Truck Simulator">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/kekdwpuutyo8qoc/Euro+Truck+Simulator.torrent/file" target="_blank">Euro Truck Simulator</a></h3>
+                    <p>Euro Truck Simulator é um jogo de simulação de caminhões onde os jogadores dirigem por estradas da Europa, entregando cargas e construindo seu próprio império de transporte.</p>
+                </div>
+            </div>
+
+            <!-- Euro Truck Simulator 2 -->
+            <div class="card" data-category="simulacao">
+                <img src="logo_euro_truck_simulator2.png" alt="Euro Truck Simulator 2">
+                <div>
+                    <h3><a href="https://drive.google.com/file/d/1lT6p9CrmdoG_w2yx6PiYC4GX7x2XJjd4/view?usp=sharing" target="_blank">Euro Truck Simulator 2</a></h3>
+                    <p>Euro Truck Simulator 2 leva a simulação de caminhões a um novo nível, com gráficos impressionantes e uma experiência de condução mais realista.</p>
+                </div>
+            </div>
+
+            <!-- Microsoft Flight Simulator -->
+            <div class="card" data-category="simulacao">
+                <img src="logo_microsoft_flight_simulator.png" alt="Microsoft Flight Simulator">
+                <div>
+                    <h3><a href="https://drive.google.com/file/d/1VliOmTCIwdKT-ldxsy4I4EPLB3oMnu3H/view" target="_blank">Microsoft Flight Simulator</a></h3>
+                    <p>Microsoft Flight Simulator oferece uma experiência de pilotagem realista, com gráficos impressionantes e um mundo aberto para explorar. Ideal para entusiastas de aviação.</p>
+                </div>
+            </div>
+
+            <!-- Supermarket Simulator -->
+            <div class="card" data-category="simulacao">
+                <img src="logo_supermarket_simulator.png" alt="Supermarket Simulator">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/z3c43a9msniljbv/Supermarket+Simulator.rar/file" target="_blank">Supermarket Simulator</a></h3>
+                    <p>Supermarket Simulator é um jogo divertido onde os jogadores gerenciam um supermercado, atendendo clientes e organizando prateleiras.</p>
+                </div>
+            </div>
+
+            <!-- Internet Cafe Simulator -->
+            <div class="card" data-category="simulacao">
+                <img src="logo_internet_cafe_simulator.png" alt="Internet Cafe Simulator">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/dy5x2o1me5b4y4m" target="_blank">Internet Cafe Simulator</a></h3>
+                    <p>Internet Cafe Simulator permite que os jogadores gerenciem seu próprio café de internet, com desafios de negócios e entretenimento.</p>
+                </div>
+            </div>
+
+            <!-- Totally Accurate Battle Simulator (TABS) -->
+            <div class="card" data-category="estrategia">
+                <img src="logo_tabs.png" alt="Totally Accurate Battle Simulator (TABS)">
+                <div>
+                    <h3><a href="https://drive.google.com/file/d/1NEk28qOMoWTyvxMquHGLG4rpfyRM43jq/view?usp=sharing" target="_blank">Totally Accurate Battle Simulator (TABS)</a></h3>
+                    <p>TABS é um jogo de estratégia em que você controla exércitos de unidades malucas em batalhas absurdas. Uma experiência divertida e única!</p>
+                </div>
+            </div>
+
+            <!-- Goat Simulator 3 -->
+            <div class="card" data-category="simulacao">
+                <img src="logo_goat_simulator_3.png" alt="Goat Simulator 3">
+                <div>
+                    <h3><a href="https://www.mediafire.com/file/gxbpxlrlubhbcdx/Goat_Simulator_3.txt/file" target="_blank">Goat Simulator 3</a></h3>
+                    <p>Goat Simulator 3 é um jogo de simulação onde os jogadores controlam uma cabra em um mundo aberto, causando caos e se divertindo com físicas exageradas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
